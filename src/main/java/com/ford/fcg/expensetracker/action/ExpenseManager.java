@@ -3,26 +3,30 @@ package com.ford.fcg.expensetracker.action;
 import com.ford.fcg.expensetracker.domain.Expense;
 
 public class ExpenseManager {
-
-	private Expense[] expenseArray = new Expense[10];
-	private int currentIndex = 0;
 	
-	public Expense[] expenseArray() {
-		return expenseArray;
-	}
-
-	public void addExpense(Expense expense) {
-		expenseArray[currentIndex] = expense;
-		currentIndex++;
-	}
-
-	public String getAllExpensesAsString() {
-		StringBuilder builder = new StringBuilder();
-		for(int i=0;i<10;i++){
-			if(expenseArray[i] != null)
-				builder.append(expenseArray[i]).append("\n");
+	PersonalExpenseStore personalExpenseStore = new PersonalExpenseStore();
+	OfficialExpenseStore officialExpenseStore = new OfficialExpenseStore();
+	
+	private BaseExpenseStore getExpenseStore(boolean isOfficial){
+		if(isOfficial){
+			return officialExpenseStore;
 		}
-		return builder.toString();
+		return personalExpenseStore;
 	}
+
+	public void addExpense(boolean isOfficial, Expense expense) {
+		getExpenseStore(isOfficial).add(expense);
+	}
+
+	public void viewExpenses() {
+		viewExpenses(false);
+	}
+
+	public void viewExpenses(boolean isOfficial) {
+		getExpenseStore(isOfficial).printAll(System.out);
+	}
+
+
 
 }
+

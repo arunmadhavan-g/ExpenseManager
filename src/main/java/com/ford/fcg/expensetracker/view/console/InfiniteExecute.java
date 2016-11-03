@@ -6,7 +6,7 @@ public class InfiniteExecute {
 
 	public static void main(String[] args) {
 		ExpenseManager expenseManager = new ExpenseManager();
-		BaseMenu menu = new ExpenseMainMenu();
+		BaseMenu menu = new OfficialPersonalSelectionMenu();
 		
 		while(true){
 			menu = menu.execute(expenseManager);
