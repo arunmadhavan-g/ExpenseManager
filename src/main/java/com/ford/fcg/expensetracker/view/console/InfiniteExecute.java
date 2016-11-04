@@ -9,7 +9,7 @@ public class InfiniteExecute {
 		BaseMenu menu = new OfficialPersonalSelectionMenu();
 		
 		while(true){
-			menu = menu.execute(expenseManager);
+			menu = menu.render(expenseManager);
 		}
 	}
 }

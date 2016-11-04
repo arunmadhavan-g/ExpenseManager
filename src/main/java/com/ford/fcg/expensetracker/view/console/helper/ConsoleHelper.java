@@ -9,13 +9,16 @@ public class ConsoleHelper {
 	}
 	
 	public String[] execute(){
-		String[] responses  = new String[inputs.length];
-		for(int i=0;i<inputs.length;i++){
-			System.out.print(String.format("Enter %s:", inputs[i]));
-			responses[i] = System.console().readLine();
+		if(inputs != null){
+			String[] responses  = new String[inputs.length];
+			for(int i=0;i<inputs.length;i++){
+				System.out.print(String.format("Enter %s:", inputs[i]));
+				responses[i] = System.console().readLine();
+			}
+			return responses;
 		}
 		
-		return responses;
+		return new String[]{};
 	} 
 	
 }

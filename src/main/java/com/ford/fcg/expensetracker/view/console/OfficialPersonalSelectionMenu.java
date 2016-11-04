@@ -1,24 +1,34 @@
 package com.ford.fcg.expensetracker.view.console;
 
 import com.ford.fcg.expensetracker.action.ExpenseManager;
-import com.ford.fcg.expensetracker.view.console.helper.ConsoleHelper;
 
 public class OfficialPersonalSelectionMenu extends BaseMenu {
 
+	private static final String[] INPUTS = new String[]{"Choice"};
+	private static final String TITLE = "Please Enter (O) for official, (P) for personal Expense or (*) to Exit";
+
 	@Override
-	public BaseMenu execute(ExpenseManager expenseManager) {
-		System.out.println("Welcome to Expense App");
-		System.out.println("-------------------------");
-		System.out.println("Please Enter (O) for official, (P) for personal Expense or (*) to Exit");
-		
-		ConsoleHelper helper = new ConsoleHelper(new String[]{"Choice"});
-		String[] response = helper.execute();
-		
+	protected String title() {
+		return TITLE;
+	}
+
+	@Override
+	protected String[] inputs() {
+		return INPUTS;
+	}
+
+	@Override
+	protected String footer() {
+		return null;
+	}
+
+	@Override
+	protected BaseMenu execute(String[] response, ExpenseManager expenseManager) {
 		if("O".equalsIgnoreCase(response[0]))
-			return new ExpenseMainMenu(true);
+			return new ExpenseOperationsSelectionMenu(true);
 		
 		if("P".equalsIgnoreCase(response[0]))
-			return new ExpenseMainMenu();
+			return new ExpenseOperationsSelectionMenu(false);
 		
 		if("*".equals(response[0])){
 			System.exit(0);

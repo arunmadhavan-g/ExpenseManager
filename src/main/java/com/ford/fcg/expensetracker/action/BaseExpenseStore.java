@@ -20,7 +20,36 @@ public class BaseExpenseStore {
 	public void printAll(PrintStream out){
 		for(int i=0;i<10;i++){
 			if(expenseArray[i] != null)
-				out.println(expenseArray[i].toString());
+				print(out, expenseArray[i]);
+		}
+	}
+
+	private void print(PrintStream out, Expense expense) {
+		out.println(expense);
+	}
+
+	public void find(PrintStream out, String id) {
+		for(int i=0;i<10;i++){
+			if(expenseArray[i].idEquals(id)){
+				print(out, expenseArray[i]);
+				break;
+			}
+				
+		}
+	}
+
+	public void delete(String id) {
+		boolean matched = false;
+		for(int i=0;i<10;i++){
+			if(!matched)
+				matched = expenseArray[i].idEquals(id);
+			
+			if(matched){
+				if(i != 9)
+					expenseArray[i] = expenseArray[i+1];
+				else
+					expenseArray[i] = null;
+			}
 		}
 	}
 }

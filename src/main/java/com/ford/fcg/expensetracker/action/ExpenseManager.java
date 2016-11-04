@@ -18,14 +18,17 @@ public class ExpenseManager {
 		getExpenseStore(isOfficial).add(expense);
 	}
 
-	public void viewExpenses() {
-		viewExpenses(false);
-	}
-
 	public void viewExpenses(boolean isOfficial) {
 		getExpenseStore(isOfficial).printAll(System.out);
 	}
 
+	public void findExpense(boolean isOfficial, String id) {
+		getExpenseStore(isOfficial).find(System.out,id);
+	}
+
+	public void delete(boolean isOfficial, String id) {
+		getExpenseStore(isOfficial).delete(id);
+	}
 
 
 }

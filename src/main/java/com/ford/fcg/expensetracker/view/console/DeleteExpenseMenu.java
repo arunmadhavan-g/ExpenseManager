@@ -2,13 +2,15 @@ package com.ford.fcg.expensetracker.view.console;
 
 import com.ford.fcg.expensetracker.action.ExpenseManager;
 
-public class ViewExpensesMenu extends BaseOfficialMenu {
+public class DeleteExpenseMenu extends BaseOfficialMenu {
 
-	private static final String TITLE = "View Expense";
-	public ViewExpensesMenu(boolean isOfficial) {
+	private static final String[] INPUTS = new String[]{"Expense ID"};
+	private static final String TITLE = "Enter the Expense ID to delete";
+	
+	public DeleteExpenseMenu(boolean isOfficial) {
 		super(isOfficial);
 	}
-
+	
 	@Override
 	protected String title() {
 		return TITLE;
@@ -16,7 +18,7 @@ public class ViewExpensesMenu extends BaseOfficialMenu {
 
 	@Override
 	protected String[] inputs() {
-		return null;
+		return INPUTS;
 	}
 
 	@Override
@@ -26,7 +28,7 @@ public class ViewExpensesMenu extends BaseOfficialMenu {
 
 	@Override
 	protected BaseMenu execute(String[] response, ExpenseManager expenseManager) {
-		expenseManager.viewExpenses(isOfficial());
+		expenseManager.delete(isOfficial(), response[0]);
 		return new ExpenseOperationsSelectionMenu(isOfficial());
 	}
 

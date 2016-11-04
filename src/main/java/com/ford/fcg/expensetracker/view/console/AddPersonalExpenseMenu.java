@@ -2,24 +2,32 @@ package com.ford.fcg.expensetracker.view.console;
 
 import com.ford.fcg.expensetracker.action.ExpenseManager;
 import com.ford.fcg.expensetracker.domain.Expense;
-import com.ford.fcg.expensetracker.view.console.helper.ConsoleHelper;
 
 public class AddPersonalExpenseMenu extends BaseMenu {
 	
+	private static final String[] INPUTS = new String[]{"Title", "Description", "Amount"};
+	private static final String TITLE = "Add Personal Expense";
+
 	@Override
-	public BaseMenu execute(ExpenseManager expenseManager) {
-		
-		System.out.println("Add Personal Expense");
-		System.out.println("----------------------");
-		ConsoleHelper addExpenseConsole = new ConsoleHelper(new String[]{"Title", "Description", "Amount"});
-		String[] response = addExpenseConsole.execute();
+	protected String title() {
+		return TITLE;
+	}
+
+	@Override
+	protected String[] inputs() {
+		return INPUTS;
+	}
+
+	@Override
+	protected String footer() {
+		return null;
+	}
+
+	@Override
+	protected BaseMenu execute(String[] response, ExpenseManager expenseManager) {
 		Expense expense = new Expense(response[0], response[1], Double.parseDouble(response[2]));
-		
 		expenseManager.addExpense(false, expense);
-		
-		System.out.println("Expense Successfully Added");
-		
-		return new ExpenseMainMenu(false);
+		return new ExpenseOperationsSelectionMenu(false);
 	}
 
 }
