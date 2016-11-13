@@ -2,15 +2,11 @@ package com.ford.fcg.expensetracker.view.console;
 
 import com.ford.fcg.expensetracker.action.ExpenseManager;
 
-public class FindExpenseMenu extends BaseOfficialMenu {
+public class FindExpenseMenu extends BaseMenu {
 
 	private static final String[] INPUTS = new String[]{"Expense Id"};
 	private static final String TITLE = "Enter the Expense ID to search";
 	
-	public FindExpenseMenu(boolean isOfficial) {
-		super(isOfficial);
-	}
-
 	@Override
 	protected String title() {
 		return TITLE;
@@ -28,8 +24,8 @@ public class FindExpenseMenu extends BaseOfficialMenu {
 
 	@Override
 	protected BaseMenu execute(String[] response, ExpenseManager expenseManager) {
-		expenseManager.findExpense(isOfficial(), response[0]);
-		return new ExpenseOperationsSelectionMenu(isOfficial());
+		expenseManager.findExpense(response[0]);
+		return new ExpenseOperationsSelectionMenu();
 	}
 
 }

@@ -2,11 +2,10 @@ package com.ford.fcg.expensetracker.view.console;
 
 import com.ford.fcg.expensetracker.action.ExpenseManager;
 
-public class ViewExpensesMenu extends BaseOfficialMenu {
+public class ViewExpensesMenu extends BaseMenu {
 
 	private static final String TITLE = "View Expense";
-	public ViewExpensesMenu(boolean isOfficial) {
-		super(isOfficial);
+	public ViewExpensesMenu() {
 	}
 
 	@Override
@@ -26,8 +25,8 @@ public class ViewExpensesMenu extends BaseOfficialMenu {
 
 	@Override
 	protected BaseMenu execute(String[] response, ExpenseManager expenseManager) {
-		expenseManager.viewExpenses(isOfficial());
-		return new ExpenseOperationsSelectionMenu(isOfficial());
+		expenseManager.viewExpenses();
+		return new ExpenseOperationsSelectionMenu();
 	}
 
 }

@@ -2,14 +2,10 @@ package com.ford.fcg.expensetracker.view.console;
 
 import com.ford.fcg.expensetracker.action.ExpenseManager;
 
-public class DeleteExpenseMenu extends BaseOfficialMenu {
+public class DeleteExpenseMenu extends BaseMenu {
 
 	private static final String[] INPUTS = new String[]{"Expense ID"};
 	private static final String TITLE = "Enter the Expense ID to delete";
-	
-	public DeleteExpenseMenu(boolean isOfficial) {
-		super(isOfficial);
-	}
 	
 	@Override
 	protected String title() {
@@ -28,8 +24,8 @@ public class DeleteExpenseMenu extends BaseOfficialMenu {
 
 	@Override
 	protected BaseMenu execute(String[] response, ExpenseManager expenseManager) {
-		expenseManager.delete(isOfficial(), response[0]);
-		return new ExpenseOperationsSelectionMenu(isOfficial());
+		expenseManager.delete(response[0]);
+		return new ExpenseOperationsSelectionMenu();
 	}
 
 }

@@ -31,13 +31,13 @@ public class AddPersonalExpenseMenu extends BaseMenu {
 		Expense expense;
 		try {
 			expense = new Expense(response[0], response[1], Double.parseDouble(response[2]), CommonUtil.convertToDate(response[3]));
-			expenseManager.addExpense(false, expense);
+			expenseManager.addExpense(expense);
 		}  catch (NumberFormatException e) {
 			System.out.println("The Amount is not properly entered, Please correct the same");
 		} catch (ParseException e) {
 			System.out.println("The Date entered does not follow the dd-MMM-yyyy format. Please correct the same");
 		}
-		return new ExpenseOperationsSelectionMenu(false);
+		return new ExpenseOperationsSelectionMenu();
 	}
 
 }

@@ -24,11 +24,15 @@ public class OfficialPersonalSelectionMenu extends BaseMenu {
 
 	@Override
 	protected BaseMenu execute(String[] response, ExpenseManager expenseManager) {
-		if("O".equalsIgnoreCase(response[0]))
-			return new ExpenseOperationsSelectionMenu(true);
+		if("O".equalsIgnoreCase(response[0])){
+			expenseManager.officialExpense();
+			return new ExpenseOperationsSelectionMenu();
+		}
 		
-		if("P".equalsIgnoreCase(response[0]))
-			return new ExpenseOperationsSelectionMenu(false);
+		if("P".equalsIgnoreCase(response[0])){
+			expenseManager.personalExpense();
+			return new ExpenseOperationsSelectionMenu();
+		}
 		
 		if("*".equals(response[0])){
 			System.exit(0);
